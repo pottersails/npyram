@@ -1,58 +1,61 @@
-# Summary of Dependencies for Each Subroutine in `ram1.5p.f`
+# Summary of Roles and Depedencies for Each Subroutine in `ram1.5p.f`
 
 1. **Main Program (`ram`)**
    - **Calls:** `setup`, `updat`, `solve`, `outpt`
-   - **Dependencies:** Initializes and sets up parameters, updates the acoustic field, solves the tridiagonal system of equations, and outputs transmission loss.
+   - **Role:** Initializes and sets up parameters, updates the acoustic field, solves the tridiagonal system of equations, and outputs transmission loss.
+   - **IO:** Reads `ram.in`, Writes `ram.grid`
 
 2. **Subroutine `setup`**
    - **Calls:** `profl`, `selfs`, `outpt`, `epade`, `matrc`
-   - **Dependencies:** Initializes parameters, profiles, and matrices; sets up initial conditions.
-
+   - **Role:** Initializes parameters, profiles, and matrices; sets up initial conditions.
+   -**IO:** Writes `ram.grid`, console
 3. **Subroutine `profl`**
    - **Calls:** `zread`
-   - **Dependencies:** Sets up the profiles for sound speed, attenuation, and density.
+   - **Role:** Sets up the profiles for sound speed, attenuation, and density.
+   - **IO:** Reads `ram.in` 
 
 4. **Subroutine `zread`**
-   - **Dependencies:** Reads and interpolates profile data from input.
+   - **Role:** Reads and interpolates profile data from input.
+   - **IO:** Reads `ram.in`
 
 5. **Subroutine `matrc`**
-   - **Dependencies:** Constructs tridiagonal matrices for the Pade approximation method.
+   - **Role:** Constructs tridiagonal matrices for the Pade approximation method.
 
 6. **Subroutine `solve`**
-   - **Dependencies:** Solves the tridiagonal system of equations using the Pade approximation.
+   - **Role:** Solves the tridiagonal system of equations using the Pade approximation.
 
 7. **Subroutine `updat`**
-   - **Calls:** `matrc`, `profl`
-   - **Dependencies:** Updates the matrices and profiles based on range.
+   - **Calls:** `matrc`, `profl`, `epade`
+   - **Role:** Updates the matrices and profiles based on range.
 
 8. **Subroutine `selfs`**
    - **Calls:** `matrc`, `solve`, `epade`
-   - **Dependencies:** Initializes the self-starter for the simulation.
+   - **Role:** Initializes the self-starter for the simulation.
 
 9. **Subroutine `outpt`**
-   - **Dependencies:** Outputs the transmission loss at each range step.
-
+   - **Role:** Outputs the transmission loss at each range step.
+   - **IO:** Writes `ram.grid`, `ram.line`, `ram.field`
 10. **Subroutine `epade`**
     - **Calls:** `deriv`, `gauss`, `fndrt`
-    - **Dependencies:** Computes the coefficients for the rational approximation.
+    - **Role:** Computes the coefficients for the rational approximation.
 
 11. **Subroutine `deriv`**
-    - **Dependencies:** Computes the derivatives of the operator function.
+    - **Role:** Computes the derivatives of the operator function.
 
 12. **Subroutine `gauss`**
     - **Calls:** `pivot`
-    - **Dependencies:** Performs Gaussian elimination.
+    - **Role:** Performs Gaussian elimination.
 
 13. **Subroutine `pivot`**
-    - **Dependencies:** Interchanges rows for stability during Gaussian elimination.
+    - **Role:** Interchanges rows for stability during Gaussian elimination.
 
 14. **Subroutine `fndrt`**
     - **Calls:** `guerre`
-    - **Dependencies:** Finds the roots of a polynomial using Laguerre's method.
+    - **Role:** Finds the roots of a polynomial using Laguerre's method.
 
 15. **Subroutine `guerre`**
-    - **Dependencies:** Implements Laguerre's method for root-finding.
-
+    - **Role:** Implements Laguerre's method for root-finding.
+    - **IO:** Writes to console
 # Flow Diagram of the Fortran Program
 
 1. **Main Program (`ram`)**
@@ -146,4 +149,4 @@ Main Program (ram)
     -> stop
 ```
 
-This diagram represents the flow of the program and the dependencies between the subroutines.
+This diagram represents the flow of the program and the Role between the subroutines.
