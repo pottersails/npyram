@@ -11,7 +11,7 @@
    -**IO:** Writes `ram.grid`, console
 3. **Subroutine `profl`**
    - **Calls:** `zread`
-   - **Role:** Sets up the profiles for sound speed, attenuation, and density.
+   - **Role:** read in the profiles and interpolate them onto the grid
    - **IO:** Reads `ram.in` 
 
 4. **Subroutine `zread`**
@@ -19,7 +19,7 @@
    - **IO:** Reads `ram.in`
 
 5. **Subroutine `matrc`**
-   - **Role:** Constructs tridiagonal matrices for the Pade approximation method.
+   - **Role:** Sets up the tridiagonal matrices and the special decomposition
 
 6. **Subroutine `solve`**
    - **Role:** Solves the tridiagonal system of equations using the Pade approximation.
