@@ -1,0 +1,16 @@
+# Virtual Environment
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDEs
+.idea/
+.spyproject/
+
+# Jupyter
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
