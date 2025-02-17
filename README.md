@@ -25,3 +25,41 @@ f2py -c -m pivot pivot.f
 ```
 f2py -c -m pivot pivot.f --fcompiler=gfortran --link-libgcc --link-quadmath --link-libgfortran
 ```
+
+### importing and using
+
+The above f2py commands will build a .pyd library named according to the pattern module.env-details.pyd
+The pivot example above produced `pivot.cp313t-win_amd64.pyd`.  When you attempt to import pivot, python looks for a module with a name that matches the current python environment.  Therefore, as long as the environment is identical, the import should work.
+
+Below is an example of using pivot (though in this case the module was compiled to 'ram'
+
+```python
+import numpy as np
+from src.ram import pivot
+
+print(pivot.__doc__)
+
+# build fortran compliant in/out numpy arrays
+# dtype matches fortrans complex*16
+# order="f" resolves errors related to the data not being fortran contigious
+
+a = np.array(np.random.rand(3, 3), dtype="cdouble", order="F")
+b = np.array(
+    np.random.rand(
+        3,
+    ),
+    dtype="cdouble",
+    order="F",
+)
+
+# show input arrays
+print(a)
+print(b)
+
+# call compiled fortran
+pivot(1, a, b)
+
+# print pivoted result
+print(a)
+print(b)
+``
