@@ -2,7 +2,7 @@ c     Gaussian elimination.
 c
       subroutine gauss(m,n,a,b)
       implicit real*8 (a-h,o-z)
-      complex*16 a(m,m),b(m)
+      complex*16, intent(INOUT) :: a(m,m),b(m)
 c
 c     Downward elimination.
 c
