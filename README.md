@@ -1,10 +1,14 @@
-This repository is an effort to modernize the well-known underwater acoustic propagation model RAM.  The overall approach is to:
+This repository is one of several efforts to modernize the well-known underwater acoustic propagation model RAM.  There exists fully python implementations of this code, notably 'PyRAM', and this repository is not meant to reproduce that or similar efforts. By contrast, this effort is meant to wrap the original compiled fortran code
+into python modules, which could be leveraged by existing projects to improve performance (by offloading computation from python to fortran).  However, this effort may be adapted to a complete python/RAM implementation if that makes sense. 
 
-- modernize the fortran code with explict typing and in/out intents
+
+The overall approach is to:
+
+- modernize the fortran code with explict typing and in/out intents where necessary
 - wrap the computationally heavy components using f2py into a python module
-- reconstruct the core functionality in python
+- offer a portable api to the original fundamental subroutines (e.g. martc, solve, pade, etc.)
 
-The result will be the same well-known and computationally efficient propagation model, but with a modern and direct python interface which avoids file IO.
+The result will be the same well-known and efficent computation, but with a modern and direct python interface.
 
 ## Steps to get f2py compiling on windows/conda
 
