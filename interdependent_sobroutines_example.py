@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Feb 16 21:03:17 2025
-
-@author: jim
+f2py -c -m ram subroutines/pivot.f subroutines/gauss.f --fcompiler=gfortran --link-libgcc --link-quadmath --link-libgfortran
 """
 
 import numpy as np
@@ -27,7 +25,7 @@ b = np.array(
 print(a)
 print(b)
 
-# call compiled fortran
+# call compiled fortran with n=2
 gauss(2, a, b)
 
 # print pivoted result
