@@ -11,6 +11,4 @@ __pycache__/
 .idea/
 .spyproject/
 
-# Jupyter
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
+
